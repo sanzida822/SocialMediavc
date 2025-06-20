@@ -32,10 +32,10 @@
 
     <!-- Data source -->
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
-        <property name="driverClassName" value="{db.driver}"/>
-        <property name="url" value="{db.url}"/>
-        <property name="username" value="{db.username}"/>
-        <property name="password" value="{db.password}"/>
+        <property name="driverClassName" value="${db.driver}"/>
+        <property name="url" value="${db.url}"/>
+        <property name="username" value="${db.username}"/>
+        <property name="password" value="${db.password}"/>
     </bean>
 
     <!-- EntityManagerFactory -->
