@@ -1,6 +1,8 @@
 package org.example.socialmediamvc.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
 
@@ -17,7 +19,11 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "image_id")
     private Image profileImage;
+    @CreationTimestamp
+    @Column(name="created_at")
     private Timestamp createdAt;
+    @UpdateTimestamp
+    @Column(name="updated_at")
     private Timestamp updatedAt;
 
     public User(int id, String username, String email, String password, String salt, Image profileImage,
