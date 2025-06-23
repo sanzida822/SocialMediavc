@@ -1,69 +1,35 @@
 package org.example.socialmediamvc.dto;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.example.socialmediamvc.validation.PasswordMatches;
+import org.example.socialmediamvc.validation.UniqueEmail;
+
+@Data
+@PasswordMatches
+@NoArgsConstructor
 public class RegistrationRequestDto {
+        @NotBlank(message="{error.username.required}")
+        @Size(min = 4, max=30, message = "{error.username.size}")
+        private String userName;
 
-        private String username;
+        @NotBlank(message ="{error.email.required}")
+        @Email(message = "{error.email.invalid}")
+        @UniqueEmail
         private String email;
+
+        @NotBlank(message = "{error.password.required}")
+        @Size(min = 4, max=30, message = "{error.username.size}")
         private String password;
+
+        @NotBlank(message = "{error.password.required}")
         private String confirmPassword;
-        private ImageDto imageDto;
-//	private Part profileImagePart;
-//	private byte[] profileImage;
+        private ImageDto profileImage;
 
-        public RegistrationRequestDto() {}
-        public RegistrationRequestDto(String username, String email, String password, String confirmPassword,
-                                      ImageDto imageDto) {
-            super();
-            this.username = username;
-            this.email = email;
-            this.password = password;
-            this.confirmPassword = confirmPassword;
-            this.imageDto=imageDto;
-
-        }
-
-        public String getUsername() {
-            return username;
-        }
-
-        public void setUsername(String username) {
-            this.username = username;
-        }
-
-        public String getEmail() {
-            return email;
-        }
-
-        public void setEmail(String email) {
-            this.email = email;
-        }
-
-        public String getPassword() {
-            return password;
-        }
-
-        public void setPassword(String password) {
-            this.password = password;
-        }
-
-        public String getConfirmPassword() {
-            return confirmPassword;
-        }
-
-        public void setConfirmPassword(String confirmPassword) {
-            this.confirmPassword = confirmPassword;
-        }
-        public ImageDto getImageDto() {
-            return imageDto;
-        }
-        public void setImageDto(ImageDto imageDto) {
-            this.imageDto = imageDto;
-        }
-        @Override
-        public String toString() {
-            return "RegistrationRequestDTO [username=" + username + ", email=" + email + ", password=" + password
-                    + ", confirmPassword=" + confirmPassword + ", imageDto=" + imageDto + "]";
-        }
 
 
 

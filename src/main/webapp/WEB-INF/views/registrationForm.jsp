@@ -28,21 +28,21 @@
 
                                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign
                                     up</p>
-                                <c:if test="${not empty errorMessages}">
-                                    <div class="alert alert-danger">
-                                        <c:forEach var="error" items="${errorMessages}">
-                                            <p>${error.value}</p>
-                                        </c:forEach>
-                                    </div>
-                                </c:if>
+<%--                                <c:if test="${not empty errorMessages}">--%>
+<%--                                    <div class="alert alert-danger">--%>
+<%--                                        <c:forEach var="error" items="${errorMessages}">--%>
+<%--                                            <p>${error.value}</p>--%>
+<%--                                        </c:forEach>--%>
+<%--                                    </div>--%>
+<%--                                </c:if>--%>
                                 <%
-                                    String globalError = (String) request.getAttribute("globalError");
+<%--                                    String globalError = (String) request.getAttribute("globalError");--%>
 
-                                    if (globalError != null) {
-                                %>
-                                <div class="alert alert-danger"><%=globalError%></div>
+<%--                                    if (globalError != null) {--%>
+<%--                                %>--%>
+<%--                                <div class="alert alert-danger"><%=globalError%></div>--%>
                                 <%
-                                    }
+//                                    }
                                 %>
 
                                 <form class="mx-1 mx-md-4"
@@ -54,11 +54,11 @@
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
                                             <input type="text" id="form3Example1c" class="form-control"
-                                                   name="username" /> <label class="form-label"
+                                                   name="userName" /> <label class="form-label"
                                                                              for="form3Example1c">Your Name</label>
-                                            <c:if test="${not empty errorMessages.username_required}">
-                                                <div class="error">${errorMessages.username_required}</div>
-                                            </c:if>
+<%--                                            <c:if test="${not empty errorMessages.username_required}">--%>
+<%--                                                <div class="error">${errorMessages.username_required}</div>--%>
+<%--                                            </c:if>--%>
                                         </div>
                                     </div>
 
@@ -74,7 +74,7 @@
                                         <i class="fas fa-image fa-lg me-3 fa-fw"></i>
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
                                             <input type="file" id="form3Example5c" class="form-control"
-                                                   name="image" accept="image/*" /> <label class="form-label"
+                                                   name="profileImage" accept="image/*" /> <label class="form-label"
                                                                                            for="form3Example5c">Upload Image</label>
                                         </div>
                                     </div>
@@ -91,7 +91,7 @@
                                     <div class="d-flex flex-row align-items-center mb-2">
                                         <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
-                                            <input type="password" name="confirm_password"
+                                            <input type="password" name="confirmPassword"
                                                    id="form3Example4cd" class="form-control" /> <label
                                                 class="form-label" for="form3Example4cd">Repeat
                                             your password</label>
