@@ -1,39 +1,33 @@
 package org.example.socialmediamvc.dto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
-
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.socialmediamvc.validation.PasswordMatches;
 import org.example.socialmediamvc.validation.UniqueEmail;
 
 @Data
-@PasswordMatches
 @NoArgsConstructor
+@PasswordMatches
 public class RegistrationRequestDto {
         @NotBlank(message="{error.username.required}")
+        @NotEmpty(message="{error.username.required}")
         @Size(min = 4, max=30, message = "{error.username.size}")
         private String userName;
 
         @NotBlank(message ="{error.email.required}")
+        @NotEmpty(message="{error.email.required}")
         @Email(message = "{error.email.invalid}")
-        @UniqueEmail
         private String email;
 
         @NotBlank(message = "{error.password.required}")
-        @Size(min = 4, max=30, message = "{error.username.size}")
+        @Size(min = 4, max=30, message = "{error.password.size}")
         private String password;
-
         @NotBlank(message = "{error.password.required}")
         private String confirmPassword;
-        private ImageDto profileImage;
-
-
-
-
-
+      //  private ImageDto profileImage;
     }
 
 
