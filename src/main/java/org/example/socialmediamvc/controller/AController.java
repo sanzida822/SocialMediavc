@@ -1,16 +1,26 @@
 package org.example.socialmediamvc.controller;
 
 import org.example.socialmediamvc.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Locale;
 
 @Controller
 public class AController {
+    @Autowired
+    private MessageSource messageSource;
+
+    public String testMessage(Locale locale) {
+        String message = messageSource.getMessage("error.username.required", null, locale);
+        System.out.println(message);  // This prints the actual message, e.g. "Username is required."
+        return message;
+    }
+
     @ModelAttribute
     public void commonData(Model model) {
         model.addAttribute("header", "Social Media View");

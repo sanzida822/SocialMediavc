@@ -19,19 +19,24 @@
     <context:component-scan base-package="org.example.socialmediamvc"/>
 
 
-    <!-- Enable Spring MVC annotations -->
-    <mvc:annotation-driven/>
-
     <!-- View resolver -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
-<!--    load message properties file-->
+
+<!--    validation-->
     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
         <property name="basename" value="messages"/>
         <property name="defaultEncoding" value="UTF-8"/>
     </bean>
+
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="validationMessageSource" ref="messageSource"/>
+    </bean>
+
+    <!-- Make sure you only have this once -->
+    <mvc:annotation-driven validator="validator"/>
 
     <!--    load properties file-->
     <context:property-placeholder location="classpath:application.properties"/>
@@ -61,7 +66,7 @@
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.format_sql">true</prop>
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</prop> <!-- ✅ Add this -->
+
 
             </props>
         </property>
