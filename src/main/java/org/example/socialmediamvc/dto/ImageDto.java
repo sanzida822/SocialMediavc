@@ -1,52 +1,28 @@
 package org.example.socialmediamvc.dto;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.Arrays;
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 
 public class ImageDto {
+
     int id;
+    @NotNull(message = "{error.image.data.required}")
+    @Size(min = 1, message = "{error.image.data.empty}")
     private byte[] data;
+    @Min(value = 1, message = "{error.image.size.invalid}")
     private long size;
-    private String contentType;
 
-    public ImageDto() {}
-    public ImageDto(byte[] data, long size, String contentType) {
-        super();
-        this.data = data;
-        this.size = size;
-        this.contentType = contentType;
-    }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
-    public byte[] getData() {
-        return data;
-    }
-    public void setData(byte[] data) {
-        this.data = data;
-    }
-    public long getSize() {
-        return size;
-    }
-    public void setSize(long size) {
-        this.size = size;
-    }
-    public String getContentType() {
-        return contentType;
-    }
-
-    public void setContentType(String contentType) {
-        this.contentType = contentType;
-    }
-
-    @Override
-    public String toString() {
-        return "ImageDto [id=" + id + ", data=" + Arrays.toString(data) + ", size=" + size + ", contentType="
-                + contentType + "]";
-    }
 }

@@ -1,18 +1,28 @@
 package org.example.socialmediamvc.model;
 
 import jakarta.persistence.*;
+import lombok.Builder;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
 import java.util.Arrays;
 @Entity
+@Table(name="images")
+@Builder
 public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Lob
     private byte[] data;
+    @Column(name="size")
     private long sizeBytes;
+
+    @CreationTimestamp
     private Timestamp createdAt;
+
+    @UpdateTimestamp
     private Timestamp updatedAt;
 
     public Image(int id, byte[] data, long sizeBytes, Timestamp createdAt, Timestamp updatedAt) {

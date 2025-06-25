@@ -25,9 +25,8 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
-<!--    validation-->
     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
-        <property name="basename" value="messages"/>
+        <property name="basename" value="classpath:messages"/>
         <property name="defaultEncoding" value="UTF-8"/>
     </bean>
 
@@ -35,8 +34,8 @@
         <property name="validationMessageSource" ref="messageSource"/>
     </bean>
 
-    <!-- Make sure you only have this once -->
     <mvc:annotation-driven validator="validator"/>
+
 
     <!--    load properties file-->
     <context:property-placeholder location="classpath:application.properties"/>

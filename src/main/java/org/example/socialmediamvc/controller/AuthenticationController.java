@@ -1,5 +1,7 @@
 package org.example.socialmediamvc.controller;
 import org.example.socialmediamvc.dto.RegistrationRequestDto;
+import org.example.socialmediamvc.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -9,6 +11,8 @@ import jakarta.validation.Valid;
 @Controller
 @RequestMapping("/auth")
 public class AuthenticationController {
+    @Autowired
+    private UserService userService;
     @GetMapping("/register")
     public String processRegistration(Model model) {
         model.addAttribute("registrationRequestDto", new RegistrationRequestDto());
@@ -26,10 +30,13 @@ public class AuthenticationController {
             bindingResult.getAllErrors().forEach(error -> {
                 System.out.println("Validation message: " + error.getDefaultMessage());
             });
+
             return "registrationForm";
+        }else {
+            userService.register(registrationRequestDto);
         }
 
-        return "registrationForm";
+        return "redirect:/loginForm";
     }
 
 

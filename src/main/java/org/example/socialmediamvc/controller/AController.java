@@ -7,19 +7,30 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import jakarta.validation.Validator;
+
 
 import java.util.Locale;
 
 @Controller
 public class AController {
-    @Autowired
-    private MessageSource messageSource;
 
-    public String testMessage(Locale locale) {
-        String message = messageSource.getMessage("error.username.required", null, locale);
-        System.out.println(message);  // This prints the actual message, e.g. "Username is required."
-        return message;
+    @Autowired
+    private Validator validator;
+    @GetMapping("/check-validator")
+    @ResponseBody
+    public String checkValidatorType() {
+        return "Validator class: " + validator.getClass().getName();
     }
+
+//    @Autowired
+//    private MessageSource messageSource;
+//
+//    public String testMessage(Locale locale) {
+//        String message = messageSource.getMessage("error.username.required", null, locale);
+//        System.out.println(message);  // This prints the actual message, e.g. "Username is required."
+//        return message;
+//    }
 
     @ModelAttribute
     public void commonData(Model model) {
