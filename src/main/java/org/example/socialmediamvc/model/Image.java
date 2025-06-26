@@ -16,8 +16,10 @@ public class Image {
     private int id;
     @Lob
     private byte[] data;
+
     @Column(name="size")
     private long sizeBytes;
+
 
     @CreationTimestamp
     private Timestamp createdAt;

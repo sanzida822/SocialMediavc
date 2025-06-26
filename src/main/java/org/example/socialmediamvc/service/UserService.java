@@ -9,6 +9,8 @@ import org.example.socialmediamvc.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+
 @Service
 public class UserService {
     @Autowired
@@ -23,7 +25,7 @@ public class UserService {
         return userRepository.findByEmail(email).isPresent();
     }
 
-    public  User register(RegistrationRequestDto registrationRequestDto) {
+    public  User register(RegistrationRequestDto registrationRequestDto) throws IOException {
         Image profileImage = imageMapper.toEntity(registrationRequestDto.getProfileImage());
         User user=userMapper.toEntity(registrationRequestDto, profileImage);
         return userRepository.save(user);

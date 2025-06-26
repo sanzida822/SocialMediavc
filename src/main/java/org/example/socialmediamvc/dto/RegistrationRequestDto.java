@@ -6,8 +6,10 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.socialmediamvc.validation.ImageFile;
 import org.example.socialmediamvc.validation.PasswordMatches;
 import org.example.socialmediamvc.validation.UniqueEmail;
+import org.springframework.web.multipart.MultipartFile;
 
 @Data
 @NoArgsConstructor
@@ -27,8 +29,8 @@ public class RegistrationRequestDto {
 
         @NotBlank(message = "{error.password.required}")
         private String confirmPassword;
-        @Valid
-        private ImageDto profileImage;
+        @ImageFile
+        private MultipartFile profileImage;
     }
 
 

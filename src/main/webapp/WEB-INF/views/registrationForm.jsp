@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,11 +30,16 @@
 
                                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign
                                     up</p>
+                                <c:if test="${not empty org.springframework.validation.BindingResult.registrationRequestDto}">
+                                    <div class="alert alert-danger">
+                                        <form:errors path="*" element="div" />
+                                    </div>
+                                </c:if>
 
 
                                 <form class="mx-1 mx-md-4"
                                       action="<%=request.getContextPath()%>/auth/register"
-                                      method="post">
+                                      method="post" enctype="multipart/form-data">
 
 
                                     <div class="d-flex flex-row align-items-center mb-2">
@@ -53,14 +60,14 @@
                                                                                   for="form3Example3c">Your Email</label>
                                         </div>
                                     </div>
-<%--                                    <div class="d-flex flex-row align-items-center mb-4">--%>
-<%--                                        <i class="fas fa-image fa-lg me-3 fa-fw"></i>--%>
-<%--                                        <div data-mdb-input-init class="form-outline flex-fill mb-0">--%>
-<%--                                            <input type="file" id="form3Example5c" class="form-control"--%>
-<%--                                                   name="profileImage" accept="image/*" /> <label class="form-label"--%>
-<%--                                                                                           for="form3Example5c">Upload Image</label>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-image fa-lg me-3 fa-fw"></i>
+                                        <div data-mdb-input-init class="form-outline flex-fill mb-0">
+                                            <input type="file" id="form3Example5c" class="form-control"
+                                                   name="profileImage" accept="image/*" /> <label class="form-label"
+                                                                                           for="form3Example5c">Upload Image</label>
+                                        </div>
+                                    </div>
 
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
