@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- Console Appender -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss} %-5level [%logger{36}] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Rolling File Appender for Production -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>D:/java/SocialApp/logs/app.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>logs/app-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>10MB</maxFileSize>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level [%logger{36}] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Root Logger Definition -->
+    <root level="info">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="FILE" />
+    </root>
+    <!-- Show SQL queries -->
+    <logger name="org.hibernate.SQL" level="debug" />
+
+    <!-- Show SQL parameter bindings -->
+    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="trace" />
+
+    <!-- Reduce other hibernate logs -->
+    <logger name="org.hibernate" level="info" />
+
+    <!-- Reduce spring framework logs -->
+    <logger name="org.springframework" level="info" />
+</configuration>

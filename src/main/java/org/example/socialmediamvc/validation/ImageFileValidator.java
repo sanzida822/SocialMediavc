@@ -7,11 +7,20 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class ImageFileValidator implements ConstraintValidator<ImageFile, MultipartFile> {
 
-public boolean isValid(MultipartFile file, ConstraintValidatorContext context) {
-    if(file == null || file.isEmpty()){
-        return false;
+    @Override
+    public boolean isValid(MultipartFile file, ConstraintValidatorContext context) {
+        if (file == null || file.isEmpty()) {
+            return false;
+        }
+        String contentType = file.getContentType();
+        boolean valid = "image/jpeg".equalsIgnoreCase(contentType);
+
+        if (!valid) {
+            context.disableDefaultConstraintViolation();
+            context.buildConstraintViolationWithTemplate("Invalid image file type. Only JPG is allowed.")
+                    .addConstraintViolation();
+        }
+        return valid;
     }
-    String contentType = file.getContentType();
-    return "image/jpeg".equalsIgnoreCase(contentType);
-}
+
 }

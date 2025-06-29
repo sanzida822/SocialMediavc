@@ -3,6 +3,7 @@ package org.example.socialmediamvc.validation;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
+import org.example.socialmediamvc.utils.Constants;
 
 import java.lang.annotation.*;
 
@@ -11,7 +12,7 @@ import java.lang.annotation.*;
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface  PasswordMatches {
-    String message() default "Passwords do not match";
+    String message() default Constants.ErrorMessage.PASSWORD_MISMATCH;
 
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
