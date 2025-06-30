@@ -60,8 +60,5 @@ public class AuthenticationController {
         httpSession.setAttribute("user", userDto);
         return "redirect:/home";
 
-
-
-
     }
 }
