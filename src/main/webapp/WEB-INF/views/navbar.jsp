@@ -1,17 +1,17 @@
-<%@page import="com.social.dto.UserDto"%>
-<%@page import="com.social.model.User"%>
+<%--<%@page import="com.social.dto.UserDto"%>--%>
+<%--<%@page import="com.social.model.User"%>--%>
 
 
 <%
-    response.setHeader("Cache-Control", "no-cache, no-store,must-revaldate");
-    UserDto user=(UserDto)session.getAttribute("user");
+//    response.setHeader("Cache-Control", "no-cache, no-store,must-revaldate");
+//    UserDto user=(UserDto)session.getAttribute("user");
 %>
 
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand"
-           href="${pageContext.request.contextPath}/user/profile"><%=user.getUsername()%></a>
+           href="${pageContext.request.contextPath}/user/profile"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarNav" aria-controls="navbarNav"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -30,7 +30,7 @@
                                         href="${pageContext.request.contextPath}/user/explore-people">Explore People</a>
                 </li>
                 <li class="nav-item"><a class="nav-link"
-                                        href="${pageContext.request.contextPath}/views/Friends.jsp">Friends</a>
+                                        href="${pageContext.request.contextPath}/views/friends.jsp">Friends</a>
                 </li>
                 <li class="nav-item"><a class="nav-link"
                                         href="${pageContext.request.contextPath}/friend-request/view">Friend

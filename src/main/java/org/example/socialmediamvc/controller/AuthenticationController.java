@@ -58,7 +58,11 @@ public class AuthenticationController {
         return "loginForm";
         }
         httpSession.setAttribute("user", userDto);
-        return "redirect:/home";
-
+        return "redirect:/";
+    }
+@GetMapping("/logout")
+    public String logout(HttpSession httpSession) {
+        httpSession.invalidate();
+        return "redirect:/auth/login";
     }
 }
