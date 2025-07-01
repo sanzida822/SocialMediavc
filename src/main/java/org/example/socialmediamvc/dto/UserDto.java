@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -16,6 +17,6 @@ public class UserDto {
     private String username;
     private String email;
     int profileImageId;
-    private Timestamp userCreated;
-    private Timestamp userUpdated;
+    private LocalDateTime userCreated;
+    private LocalDateTime userUpdated;
 }

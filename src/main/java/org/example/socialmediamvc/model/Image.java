@@ -12,7 +12,7 @@ import java.util.Arrays;
 @Builder
 public class Image {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Lob
     private byte[] data;
