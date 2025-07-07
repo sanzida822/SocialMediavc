@@ -27,7 +27,7 @@
                         href="${pageContext.request.contextPath}">Home</a>
                 </li>
                 <li class="nav-item"><a class="nav-link"
-                                        href="${pageContext.request.contextPath}/users/explore">Explore People</a>
+                                        href="${pageContext.request.contextPath}/users/suggestions">Explore People</a>
                 </li>
                 <li class="nav-item"><a class="nav-link"
                                         href="${pageContext.request.contextPath}/views/friends.jsp">Friends</a>

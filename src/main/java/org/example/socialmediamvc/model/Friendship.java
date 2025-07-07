@@ -5,37 +5,37 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.example.socialmediamvc.enums.FriendRequestStatus;
+import org.example.socialmediamvc.enums.FriendshipStatus;
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "friend_requests")
+@Table(name="friendship", uniqueConstraints={
+      @UniqueConstraint(name="friendship_unique", columnNames = {"sender_id,receiver_id"})
+})
+@AllArgsConstructor
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Builder
-public class FriendRequest {
+public class Friendship {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "sender_id", referencedColumnName = "id", nullable = false)
-    private User sender;
+    @JoinColumn(name="user_id", nullable=false)
+    private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "receiver_id", referencedColumnName = "id", nullable = false)
-    private User receiver;
+    @JoinColumn(name = "friend-id", nullable=false)
+    private User friend;
 
+    @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
-    @Column(name="status",nullable = false)
-    private FriendRequestStatus friendRequestStatus;
+    private FriendshipStatus friendshipStatus;
 
-    @Column(name = "created_at")
     @CreationTimestamp
+    @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
-
 }

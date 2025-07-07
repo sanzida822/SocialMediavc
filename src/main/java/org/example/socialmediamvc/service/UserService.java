@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -22,17 +23,14 @@ import java.util.Optional;
 public class UserService {
     @Autowired
     private UserMapper userMapper;
-
     @Autowired
     private UserRepository userRepository;
-
     @Autowired
     private ImageMapper imageMapper;
     public UserDto emailExists(String email) {
       return   userRepository.findByEmail(email).map(userMapper::toDto).orElse(null);
 
     }
-
 
     public void register(RegistrationRequestDto registrationRequestDto) throws IOException {
        // Image profileImage = imageMapper.toEntity(registrationRequestDto.getProfileImage());
@@ -48,11 +46,14 @@ public class UserService {
             return null;
         }
         User userEntity=user.get();
-
         boolean isPasswordValid=PasswordUtil.verifyPassword(loginRequestDto.getPassword(), userEntity.getPassword());
         if(isPasswordValid){
             return userMapper.toDto(userEntity);
         }
         return null;
+    }
+
+    public List<UserDto> getNonFriendUsers() {
+
     }
 }
