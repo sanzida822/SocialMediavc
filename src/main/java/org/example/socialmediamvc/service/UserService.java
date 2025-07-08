@@ -2,6 +2,7 @@ package org.example.socialmediamvc.service;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.socialmediamvc.dto.LoginRequestDto;
 import org.example.socialmediamvc.dto.RegistrationRequestDto;
@@ -13,20 +14,17 @@ import org.example.socialmediamvc.repository.UserRepository;
 import org.example.socialmediamvc.utils.PasswordUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class UserService {
-    @Autowired
-    private UserMapper userMapper;
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private ImageMapper imageMapper;
+    private final UserMapper userMapper;
+    private final UserRepository userRepository;
+    private final ImageMapper imageMapper;
     public UserDto emailExists(String email) {
       return   userRepository.findByEmail(email).map(userMapper::toDto).orElse(null);
 
@@ -53,7 +51,13 @@ public class UserService {
         return null;
     }
 
-    public List<UserDto> getNonFriendUsers() {
-
+    public List<UserDto> getNonFriendUsers(int loggedInUserId) {
+       List<User> nonFriendUsers=userRepository.findNonFriendUsers(loggedInUserId);
+       return userRepository.findNonFriendUsers(loggedInUserId).stream().map(userMapper::toDto).toList();
     }
+
+    public User getUserById(int userId) {
+        return userRepository.findById(userId).orElse(null);
+    }
+
 }

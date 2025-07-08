@@ -13,6 +13,8 @@ public class Constants {
         public static final String INVALID_IMAGETYPE = "Only JPEG images are allowed.";
         public static final String INVALID_IMAGESIZE = "Image exceeds 5MB size limit.";
         public static final String INVALID_EMAIL_PASSWORD = "Invalid email or password";
+        public static final String NO_SUGGESTIONS_AVAILABLE = "No suggestions available at the moment.";
+        public static final String FRIEND_REQUEST_EXISTS = "This user is already registered.";
 
 
 

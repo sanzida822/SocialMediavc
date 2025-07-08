@@ -60,9 +60,11 @@ public class AuthenticationController {
         httpSession.setAttribute("user", userDto);
         return "redirect:/";
     }
+
 @GetMapping("/logout")
     public String logout(HttpSession httpSession) {
         httpSession.invalidate();
         return "redirect:/auth/login";
     }
+
 }

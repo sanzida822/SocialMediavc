@@ -13,6 +13,8 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User,Integer> {
     Optional<User>  findByEmail(String email);
 
+
+
     @Query("SELECT u FROM User u WHERE " +
             "u.id != :userId AND " +
             "NOT EXISTS (SELECT 1 FROM FriendRequest fr WHERE " +

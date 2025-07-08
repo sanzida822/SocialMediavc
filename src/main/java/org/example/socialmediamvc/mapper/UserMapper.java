@@ -16,12 +16,17 @@ public class UserMapper {
 
 
     public User toEntity(RegistrationRequestDto registrationRequestDto){
-        return User.builder().username(registrationRequestDto.getUserName())
-                .email(registrationRequestDto.getEmail()).password(PasswordUtil.HashPassword(registrationRequestDto.getPassword()))
+        return User.builder()
+                .username(registrationRequestDto.getUserName())
+                .email(registrationRequestDto.getEmail())
+                .password(PasswordUtil.HashPassword(registrationRequestDto.getPassword()))
                 .build();
     }
     public UserDto toDto(User user){
-        return UserDto.builder().username(user.getUsername()).email(user.getEmail())
-                .userCreated(user.getCreatedAt()).userUpdated(user.getUpdatedAt()).build();
+        return UserDto.builder().id(user.getId())
+                .username(user.getUsername())
+                .email(user.getEmail())
+                .userCreated(user.getCreatedAt())
+                .userUpdated(user.getUpdatedAt()).build();
     }
 }
