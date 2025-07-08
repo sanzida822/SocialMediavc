@@ -15,6 +15,7 @@ public class Constants {
         public static final String INVALID_EMAIL_PASSWORD = "Invalid email or password";
         public static final String NO_SUGGESTIONS_AVAILABLE = "No suggestions available at the moment.";
         public static final String FRIEND_REQUEST_EXISTS = "This user is already registered.";
+        public static final String USER_NOT_FOUND = "User not found.";
 
 
 

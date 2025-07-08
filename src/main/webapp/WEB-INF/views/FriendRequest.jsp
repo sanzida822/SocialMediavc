@@ -33,10 +33,22 @@
                                     <tr>
                                         <td>${user.username}</td>
                                         <td>
-                                            <form action="${pageContext.request.contextPath}/friends/add-request" method="post" class="d-inline">
-                                                <input type="hidden" name="receiverId" value="${user.id}" />
-                                                <button class="btn btn-sm btn-success">
-                                                    <i class="fa-solid fa-user-plus me-2"></i>Send Request
+                                            <form
+                                                    action="${pageContext.request.contextPath}/friend-request/accept"
+                                                    method="post">
+                                                <input type="hidden" name="senderId"
+                                                       value="" />
+                                                <button type="submit" class="btn btn-sm btn-success">
+                                                    <i class="fa-solid fa-check me-1"></i>Accept
+                                                </button>
+                                            </form>
+                                            <form
+                                                    action="${pageContext.request.contextPath}/friend-request/decline"
+                                                    method="post">
+                                                <input type="hidden" name="senderId"
+                                                       value="" />
+                                                <button type="submit" class="btn btn-sm btn-danger">
+                                                    <i class="fa-solid fa-times me-1"></i>Decline
                                                 </button>
                                             </form>
                                         </td>
@@ -47,7 +59,7 @@
                         </c:when>
                         <c:otherwise>
                             <div class="alert alert-info text-center">
-                                <i class="fas fa-info-circle me-2"></i>No suggestions available at the moment.
+                                <i class="fas fa-info-circle me-2"></i>No Friend Request available at the moment.
                             </div>
                         </c:otherwise>
                     </c:choose>
@@ -59,7 +71,7 @@
 
 
     <%
-//        List<SentRequestsViewDto> sentedRequest = (List<SentRequestsViewDto>) request.getAttribute("sentedRequests");
+        //        List<SentRequestsViewDto> sentedRequest = (List<SentRequestsViewDto>) request.getAttribute("sentedRequests");
 //        if (!commonUtil.isNullOrEmpty(sentedRequest)) {
     %>
 
@@ -79,7 +91,7 @@
                         </thead>
                         <tbody>
                         <%
-//                            for (SentRequestsViewDto requests : sentedRequest) {
+                            //                            for (SentRequestsViewDto requests : sentedRequest) {
                         %>
                         <tr>
                             <td><%%></td>
@@ -93,7 +105,7 @@
                             </td>
                         </tr>
                         <%
-//                            }
+                            //                            }
                         %>
                         </tbody>
                     </table>
@@ -102,7 +114,7 @@
         </div>
     </div>
     <%
-//        }
+        //        }
     %>
 </div>
 </div>
