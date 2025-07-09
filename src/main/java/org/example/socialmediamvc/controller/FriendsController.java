@@ -34,6 +34,7 @@ public class FriendsController {
     public String viewRequest(HttpSession session) {
     UserDto loggedInUser=(UserDto)session.getAttribute("user");
     List<PendingFriendRequestDto> pendingRequest=friendRequestService.getPendingRequest(loggedInUser.getId());
+    log.info("Get pending request{}",pendingRequest);
     return "FriendRequest";
 
 }

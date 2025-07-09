@@ -14,7 +14,7 @@ public interface FriendRequestRepository extends JpaRepository<FriendRequest, In
     boolean existsBySenderAndReceiver(User sender, User receiver);
 
 
-    @Query("SELECT fr FROM FriendRequest fr " +
+    @Query("SELECT fr FROM FriendRequest fr JOIN " +
             "WHERE fr.receiver.id = :receiverId AND fr.friendRequestStatus = 'PENDING'")
     List<FriendRequest> findPendingFriendRequests(@Param("receiverId") Integer receiverId);
 }
