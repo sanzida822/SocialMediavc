@@ -38,9 +38,12 @@ public class FriendRequestService {
 
     }
 
+
     public List<PendingFriendRequestDto> getPendingRequest(int receiverId) {
       friendRequestRepository.findPendingFriendRequests(receiverId);
       List<FriendRequest> pendingRequests=friendRequestRepository.findPendingFriendRequests(receiverId);
       return pendingRequests.stream().map(friendRequestMapper::toDto).collect(Collectors.toList());
     }
+
+
 }

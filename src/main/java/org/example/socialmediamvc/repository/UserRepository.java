@@ -18,7 +18,7 @@ public interface UserRepository extends JpaRepository<User,Integer> {
             "   (fr.sender.id = :userId AND fr.receiver.id = u.id) OR " +
             "   (fr.sender.id = u.id AND fr.receiver.id = :userId)) AND " +
             "NOT EXISTS (SELECT 1 FROM Friendship f WHERE " +
-            "   (f.user.id = :userId AND f.friend.id = u.id) OR " +
-            "   (f.user.id = u.id AND f.friend.id = :userId))")
+            "   (f.sender.id = :userId AND f.receiver.id = u.id) OR " +
+            "   (f.sender.id = u.id AND f.receiver.id = :userId))")
     List<User> findNonFriendUsers(@Param("userId") int userId);
 }

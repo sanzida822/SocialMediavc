@@ -9,6 +9,7 @@ import org.example.socialmediamvc.enums.FriendRequestStatus;
 import org.example.socialmediamvc.service.FriendRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,18 +26,26 @@ public class FriendsController {
         log.info("Adding friend request");
         UserDto loggedInUser=(UserDto)session.getAttribute("user");
         friendRequestDto.setSenderId(loggedInUser.getId());
-        friendRequestDto.setFriendRequestStatus(FriendRequestStatus.PENDING);
         friendRequestService.sendRequest(friendRequestDto);
         return "redirect:/users/suggestions";
     }
 
 @GetMapping("/view-request")
-    public String viewRequest(HttpSession session) {
+    public String viewRequest(HttpSession session, Model model) {
     UserDto loggedInUser=(UserDto)session.getAttribute("user");
-    List<PendingFriendRequestDto> pendingRequest=friendRequestService.getPendingRequest(loggedInUser.getId());
-    log.info("Get pending request{}",pendingRequest);
+    List<PendingFriendRequestDto> pendingRequests=friendRequestService.getPendingRequest(loggedInUser.getId());
+    log.info("Get pending request{}",pendingRequests);
+    model.addAttribute("pendingRequests",pendingRequests);
     return "FriendRequest";
 
 }
 
+//@GetMapping("/accept-request")
+//public String acceptRequest(@RequestParam("request_id") Integer requestId, HttpSession session) {
+//        UserDto loggedInUser=(UserDto)session.getAttribute("user");
+//
+//
+//
+//
+//}
 }

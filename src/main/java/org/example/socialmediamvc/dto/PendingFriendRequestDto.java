@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 public class PendingFriendRequestDto {
+    private int id;
     private Integer senderId;
     private String senderName;
     private LocalDateTime sentAt;

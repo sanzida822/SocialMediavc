@@ -22,6 +22,7 @@ private final UserRepository userRepository;
 
     public PendingFriendRequestDto toDto(FriendRequest friendRequest) {
         return PendingFriendRequestDto.builder()
+                .id(friendRequest.getId())
                 .senderId(friendRequest.getSender().getId())
                 .senderName(friendRequest.getSender().getUsername())
                 .sentAt(friendRequest.getCreatedAt()).build();

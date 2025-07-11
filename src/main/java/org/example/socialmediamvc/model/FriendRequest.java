@@ -32,7 +32,7 @@ public class FriendRequest {
 
     @Enumerated(EnumType.STRING)
     @Column(name="status",nullable = false)
-    private FriendRequestStatus friendRequestStatus;
+    private FriendRequestStatus friendRequestStatus= FriendRequestStatus.PENDING;
 
     @Column(name = "created_at")
     @CreationTimestamp

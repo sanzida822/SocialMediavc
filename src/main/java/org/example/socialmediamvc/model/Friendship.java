@@ -1,5 +1,4 @@
 package org.example.socialmediamvc.model;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,7 +11,8 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name="friendship", uniqueConstraints={
-      @UniqueConstraint(name="friendship_unique", columnNames = {"sender_id,receiver_id"})
+        @UniqueConstraint(name="friendship_unique", columnNames = {"sender_id", "receiver_id"})
+
 })
 @AllArgsConstructor
 @Data
@@ -24,12 +24,12 @@ public class Friendship {
     private int id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user_id", nullable=false)
-    private User user;
+    @JoinColumn(name="sender_id", nullable=false)
+    private User sender;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "friend-id", nullable=false)
-    private User friend;
+    @JoinColumn(name = "receiver_id", nullable=false)
+    private User receiver;
 
     @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
