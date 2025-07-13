@@ -6,15 +6,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.socialmediamvc.enums.FriendRequestStatus;
 
+import java.time.LocalDateTime;
+
 @Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class FriendRequestDto {
     int id;
-    private int senderId;
-    private int receiverId;
+    private UserDto sender;
+    private UserDto receiver;
     private FriendRequestStatus friendRequestStatus;
-    private String friendRequestSent;
+    private LocalDateTime friendRequestSent;
 
 }

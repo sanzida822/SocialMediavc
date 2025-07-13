@@ -26,6 +26,11 @@
         <appender-ref ref="STDOUT" />
         <appender-ref ref="FILE" />
     </root>
+
+    !-- Transaction Debugging Loggers -->
+    <logger name="org.springframework.transaction" level="DEBUG"/>
+    <logger name="org.springframework.orm.jpa" level="DEBUG"/>
+    <logger name="org.hibernate.engine.transaction" level="DEBUG"/>
     <!-- Show SQL queries -->
     <logger name="org.hibernate.SQL" level="debug" />
 
@@ -37,4 +42,6 @@
 
     <!-- Reduce spring framework logs -->
     <logger name="org.springframework" level="info" />
+
+
 </configuration>

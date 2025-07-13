@@ -68,6 +68,7 @@
                 <prop key="hibernate.format_sql">true</prop>
 
 
+
             </props>
         </property>
     </bean>

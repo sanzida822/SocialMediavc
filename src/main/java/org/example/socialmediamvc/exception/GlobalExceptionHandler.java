@@ -11,7 +11,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public String handleException(Exception exception, Model model) {
         log.error("Exception caught:{}", exception.getMessage(),exception);
-        model.addAttribute("errorMessage", "Something went wrong. Please try again.");
+        model.addAttribute("errorMessage", exception.getMessage());
         return "error";
     }
 }

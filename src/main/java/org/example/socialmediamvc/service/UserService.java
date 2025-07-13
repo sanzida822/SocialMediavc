@@ -7,10 +7,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.example.socialmediamvc.dto.LoginRequestDto;
 import org.example.socialmediamvc.dto.RegistrationRequestDto;
 import org.example.socialmediamvc.dto.UserDto;
+import org.example.socialmediamvc.exception.UserNotFoundException;
 import org.example.socialmediamvc.mapper.ImageMapper;
 import org.example.socialmediamvc.mapper.UserMapper;
 import org.example.socialmediamvc.model.User;
 import org.example.socialmediamvc.repository.UserRepository;
+import org.example.socialmediamvc.utils.Constants;
 import org.example.socialmediamvc.utils.PasswordUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,8 +58,9 @@ public class UserService {
        return userRepository.findNonFriendUsers(loggedInUserId).stream().map(userMapper::toDto).toList();
     }
 
-    public User getUserById(int userId) {
-        return userRepository.findById(userId).orElse(null);
+    public UserDto getUserById(int userId) {
+        User user= userRepository.findById(userId).orElseThrow(()-> new UserNotFoundException(Constants.ErrorMessage.USER_NOT_FOUND));
+        return userMapper.toDto(user);
     }
 
 }

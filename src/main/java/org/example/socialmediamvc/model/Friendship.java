@@ -31,7 +31,7 @@ public class Friendship {
     @JoinColumn(name = "receiver_id", nullable=false)
     private User receiver;
 
-    @Column(name = "status", nullable = false)
+    @Column(name = "status", nullable = false, length = 20)
     @Enumerated(EnumType.STRING)
     private FriendshipStatus friendshipStatus;
 

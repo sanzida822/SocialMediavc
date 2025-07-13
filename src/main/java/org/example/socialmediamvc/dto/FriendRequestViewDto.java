@@ -5,14 +5,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-@Data
+import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 @Builder
-public class PendingFriendRequestDto {
-    private int id;
-    private Integer senderId;
-    private String senderName;
-    private LocalDateTime sentAt;
+public class FriendRequestViewDto {
+    List<FriendRequestDto> sentRequests;
+    List<FriendRequestDto> receivedRequests;
 }
