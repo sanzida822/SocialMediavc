@@ -51,7 +51,7 @@
         </div>
     </div>
 
-    <!-- Sent Requests Section (Only Pending) -->
+
     <div class="card">
         <div class="card-header bg-secondary text-white">
             <h5>Pending Requests Sent</h5>
@@ -71,8 +71,12 @@
                         <c:forEach items="${viewDto.sentRequests}" var="request">
                             <tr>
                                 <td>${request.receiver.username}</td>
-                                <td>${request.friendRequestSent.toString().replace('T', ' ')}</td>                                <td>
-                                <form action="${pageContexgt.request.contextPath}/friends/cancel-request" method="post">                                        <input type="hidden" name="requestId" value="${request.id}">
+                                <td>${request.friendRequestSent.toString().replace('T', ' ')}</td>
+                                <td>
+                                <form action="${pageContext.request.contextPath}/friends/cancel-request" method="post">
+                                    <input type="hidden" name="requestId" value="${request.id}">
+                                    <!-- Debug output -->
+                                    <small class="text-muted">(ID: ${request.id})</small>
                                         <button type="submit" class="btn btn-sm btn-warning">Cancel Request</button>
                                     </form>
                                 </td>

@@ -8,41 +8,28 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.Arrays;
 @Entity
-@Table(name="images")
-@Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class Image {
+@Data
+@Table(name="post")
+public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private String content;
 
-    @Lob
-    @Column(nullable = false)
-    private byte[] data;
-
-    @Column(name="size")
-    private long sizeBytes;
-
-    @Column(name="filename",nullable = false)
-    private String filename;
-
-    @Column(name="content_type", nullable=false)
-    private String contentType;
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="posted_by" , nullable = false)
+    private User postedBy;
 
     @CreationTimestamp
-    @Column(name="created_at" , updatable = false)
+    @Column(name="created_at", updatable = false)
     private LocalDateTime createdAt;
 
     @UpdateTimestamp
     @Column(name="updated_at")
     private LocalDateTime updatedAt;
-
-
 }

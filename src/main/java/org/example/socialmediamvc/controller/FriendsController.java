@@ -1,5 +1,4 @@
 package org.example.socialmediamvc.controller;
-
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @Controller
 @RequestMapping("/friends")
+@SessionAttributes("user")
 @RequiredArgsConstructor
 public class FriendsController {
     private final FriendRequestService friendRequestService;
@@ -27,9 +27,9 @@ public class FriendsController {
 
     @PostMapping("/add-request")
     public String sendRequest(@RequestParam("receiverId") Integer receiverId,
-            HttpSession session) {
+                              @ModelAttribute("user") UserDto sender) {
         log.info("Adding friend request");
-        UserDto sender=(UserDto)session.getAttribute("user");
+       // UserDto sender=(UserDto)session.getAttribute("user");
         UserDto receiver= userService.getUserById(receiverId);
         FriendRequestDto friendRequestDto = FriendRequestDto.builder()
                 .sender(sender)
@@ -41,30 +41,30 @@ public class FriendsController {
     }
 
 @GetMapping("/view-request")
-    public String viewRequest(HttpSession session, Model model) {
-    UserDto loggedInUser=(UserDto)session.getAttribute("user");
+    public String viewRequest(@ModelAttribute("user") UserDto loggedInUser, Model model) {
+   // UserDto loggedInUser=(UserDto)session.getAttribute("user");
     FriendRequestViewDto viewDto= friendRequestService.getFriendRequestsView(loggedInUser.getId());
-    log.info("Get pending request{}",viewDto);
+    log.info("Get all view request{}",viewDto);
     model.addAttribute("viewDto",viewDto);
     return "FriendRequest";
 }
 
 @PostMapping("/accept-request")
-    public String acceptRequest(@RequestParam("requestId") Integer requestId, HttpSession session) {
+    public String acceptRequest(@RequestParam("requestId") Integer requestId) {
             log.info("Accepting request: {}", requestId);
             friendshipService.acceptFriendRequest(requestId);
             return "redirect:/friends/view-request";
 }
 
 @PostMapping("/decline-request")
-    public String declineRequest(@RequestParam("requestId") Integer requestId, HttpSession session) {
+    public String declineRequest(@RequestParam("requestId") Integer requestId ) {
         log.info("Declining request: {}", requestId);
         friendshipService.rejectFriendRequest(requestId);
         return "redirect:/friends/view-request";
 }
 
 @PostMapping("/cancel-request")
-    public String cancelRequest(@RequestParam("request_id") Integer requestId, HttpSession session) {
+    public String cancelRequest(@RequestParam("requestId") Integer requestId) {
         friendshipService.rejectFriendRequest(requestId);
         return "redirect:/friends/view-request";
 }

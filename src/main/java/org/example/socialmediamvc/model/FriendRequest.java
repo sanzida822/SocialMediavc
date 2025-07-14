@@ -34,8 +34,8 @@ public class FriendRequest {
     @Column(name="status",nullable = false)
     private FriendRequestStatus friendRequestStatus= FriendRequestStatus.PENDING;
 
-    @Column(name = "created_at")
     @CreationTimestamp
+    @Column(name = "created_at",updatable = false)
     private LocalDateTime createdAt;
 
 }
