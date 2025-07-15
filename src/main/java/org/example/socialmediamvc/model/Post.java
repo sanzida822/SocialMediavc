@@ -9,6 +9,9 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -32,4 +35,11 @@ public class Post {
     @UpdateTimestamp
     @Column(name="updated_at")
     private LocalDateTime updatedAt;
+
+    @OneToMany(mappedBy = "post", cascade=CascadeType.ALL)
+    private List<PostImages> post=new ArrayList<>();
+
+
+
+
 }

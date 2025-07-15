@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
-@SessionAttributes("user")
+@SessionAttributes("")
 public class PostController {
-    @GetMapping("/showAllPosts")
+    @GetMapping("/")
     public String home() {
         return "home";
     }

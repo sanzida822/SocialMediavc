@@ -10,7 +10,10 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+
 @Entity
 @Table(name="images")
 @Data
@@ -43,6 +46,9 @@ public class Image {
     @UpdateTimestamp
     @Column(name="updated_at")
     private LocalDateTime updatedAt;
+
+    @OneToMany(mappedBy = "image", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PostImages> postImages=new ArrayList<>();
 
 
 }
