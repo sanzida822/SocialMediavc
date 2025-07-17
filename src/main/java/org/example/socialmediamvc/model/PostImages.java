@@ -26,6 +26,4 @@ public class PostImages {
     @JoinColumn(name="image_id")
     private Image image;
 
-
-
 }
