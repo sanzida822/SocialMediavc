@@ -2,20 +2,22 @@ package org.example.socialmediamvc.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.socialmediamvc.enums.Privacy;
-import org.springframework.web.multipart.MultipartFile;
+import org.example.socialmediamvc.utils.Constants;
+import org.example.socialmediamvc.validation.ContentOrImages;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ContentOrImages
 
 public class PostRequestDto {
     private int id;
@@ -23,9 +25,10 @@ public class PostRequestDto {
     @NotNull()
     private Privacy privacy;
 
-    @NotBlank()
+    @Size(max = 255, message = Constants.ErrorMessage.POST_CONTENT_LENGTH)
     private String content;
-    private List<ImageDto> images;
+
+    private List<ImageRequestDto> images;
 
 
 

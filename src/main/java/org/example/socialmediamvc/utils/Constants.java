@@ -1,5 +1,7 @@
 package org.example.socialmediamvc.utils;
 
+import java.util.List;
+
 public class Constants {
     public static class ErrorMessage {
         public static final String USERNAME_REQUIRED = "Username is required.";
@@ -17,9 +19,21 @@ public class Constants {
         public static final String FRIEND_REQUEST_EXISTS = "This user is already registered.";
         public static final String USER_NOT_FOUND = "User not found.";
         public static final String REQUEST_NOT_FOUND = "Friend request not found";
+        public static final String POST_CONTENT_OR_IMAGE_REQUIRED="Post must contain either text content or at least one image";
+        public static final String POST_CONTENT_LENGTH="Post content cannot exceed 5000 characters.";
+        public static final String IMAGE_REQUIRED="Image is required.";
+        public static final String INVALID_IMAGE_TYPE = "Only JPG or PNG images are allowed";
 
+    }
 
+    public static class Media{
+        public static final List<String> ALLOWED_IMAGE_TYPES = List.of(
+                "image/jpeg",
+                "image/png"
+        );
 
+        public static final long MAX_IMAGE_SIZE_BYTES = 5 * 1024 * 1024;
+        public static final List<String> ALLOWED_EXTENSIONS = List.of(".jpg", ".jpeg", ".png");
 
 
     }

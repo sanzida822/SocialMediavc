@@ -7,20 +7,19 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.socialmediamvc.utils.Constants;
+import org.example.socialmediamvc.validation.AllowedImageType;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Arrays;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 
-public class ImageDto {
-
-    int id;
-    @NotNull(message = "{error.image.data.required}")
-    @Size(min = 1, message = "{error.image.data.empty}")
-    private byte[] data;
-    @Min(value = 1, message = "{error.image.size.invalid}")
-    private long size;
+public class ImageRequestDto {
+    @NotNull(message=Constants.ErrorMessage.IMAGE_REQUIRED)
+    @AllowedImageType
+    private MultipartFile image;
 
 
 
