@@ -34,6 +34,8 @@
         <property name="validationMessageSource" ref="messageSource"/>
     </bean>
 
+    <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
+
     <mvc:annotation-driven validator="validator"/>
 
 
@@ -49,6 +51,8 @@
         <property name="username" value="${db.username}"/>
         <property name="password" value="${db.password}"/>
     </bean>
+
+
 
     <!-- EntityManagerFactory -->
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">

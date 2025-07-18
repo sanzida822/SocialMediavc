@@ -30,6 +30,4 @@ public class PostRequestDto {
 
     private List<ImageRequestDto> images;
 
-
-
 }

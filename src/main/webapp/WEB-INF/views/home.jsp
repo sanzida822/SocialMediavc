@@ -7,16 +7,13 @@
          pageEncoding="UTF-8" session="true"%>
 <%@ include file="header.jsp"%>
 <%@ include file="navbar.jsp"%>
-<%
-  //  List<PostDto> postDtos= (List<PostDto>)request.getAttribute("postList");
-%>
 
 
 <div class="container mt-5">
     <!-- Post Creation Form -->
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <form action="<%=request.getContextPath()%>/add/post" method="post"
+            <form action="<%=request.getContextPath()%>/create" method="post"
                   enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Privacy</label> <select
@@ -29,7 +26,7 @@
 
                 <div class="form-group mt-3">
 					<textarea class="form-control" id="exampleFormControlTextarea1"
-                              placeholder="Share your thoughts" rows="3" name="post_content"></textarea>
+                              placeholder="Share your thoughts" rows="3" name="content"></textarea>
                 </div>
 
                 <div class="form-group mt-3">
