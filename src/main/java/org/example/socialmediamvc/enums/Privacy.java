@@ -2,6 +2,6 @@ package org.example.socialmediamvc.enums;
 
 public enum Privacy {
     PUBLIC,
-    PRIVATE,
+    FRIENDS,
     ONLY_ME
 }

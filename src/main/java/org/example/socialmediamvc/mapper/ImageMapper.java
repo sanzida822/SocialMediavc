@@ -11,14 +11,12 @@ import java.io.IOException;
 public class ImageMapper {
 
 
-public Image toEntity(ImageRequestDto imageRequestDtoDto) throws IOException {
-    MultipartFile imageFile = imageRequestDtoDto.getImage();
-    return Image.builder().data(imageFile.getBytes())
-            .filename(imageFile.getName())
-            .sizeBytes(imageFile.getSize())
-            .contentType(imageFile.getContentType())
-            .build();
+    public Image toEntity(MultipartFile file) throws IOException {
+        return Image.builder().data(file.getBytes())
+                .sizeBytes(file.getSize())
+                .filename(file.getName())
+                .contentType(file.getContentType())
+                .build();
 
-}
-
+    }
 }

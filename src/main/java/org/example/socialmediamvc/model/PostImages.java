@@ -16,12 +16,12 @@ public class PostImages {
     @EmbeddedId
     private PostImageId postImageId;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @MapsId("postId")
     @JoinColumn(name = "post_id")
     private Post post;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @MapsId("imageId")
     @JoinColumn(name="image_id")
     private Image image;

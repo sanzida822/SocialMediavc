@@ -36,8 +36,8 @@ public class Post {
     @Column(name="updated_at")
     private LocalDateTime updatedAt;
 
-    @OneToMany(mappedBy = "post", cascade=CascadeType.ALL)
-    private List<PostImages> post=new ArrayList<>();
+    @OneToMany(mappedBy = "post", cascade=CascadeType.ALL, orphanRemoval = true)
+    private List<PostImages> postImages=new ArrayList<>();
 
 
 

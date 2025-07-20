@@ -1,5 +1,6 @@
 package org.example.socialmediamvc.dto;
 
+import jakarta.persistence.Transient;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -10,6 +11,7 @@ import lombok.NoArgsConstructor;
 import org.example.socialmediamvc.enums.Privacy;
 import org.example.socialmediamvc.utils.Constants;
 import org.example.socialmediamvc.validation.ContentOrImages;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -17,8 +19,8 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ContentOrImages
 
+@ContentOrImages
 public class PostRequestDto {
     private int id;
 
@@ -28,6 +30,8 @@ public class PostRequestDto {
     @Size(max = 255, message = Constants.ErrorMessage.POST_CONTENT_LENGTH)
     private String content;
 
-    private List<ImageRequestDto> images;
+    private MultipartFile[] images;
+//    @Transient
+//    private List<ImageRequestDto> images;
 
 }

@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.socialmediamvc.utils.Constants;
@@ -15,11 +16,12 @@ import java.util.Arrays;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Builder
 
 public class ImageRequestDto {
     @NotNull(message=Constants.ErrorMessage.IMAGE_REQUIRED)
     @AllowedImageType
-    private MultipartFile image;
+    private MultipartFile imageFile;
 
 
 
