@@ -1,7 +1,5 @@
 package org.example.socialmediamvc.dto;
 
-import jakarta.persistence.Transient;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -13,8 +11,6 @@ import org.example.socialmediamvc.utils.Constants;
 import org.example.socialmediamvc.validation.AllowedImage;
 import org.example.socialmediamvc.validation.ContentOrImages;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.util.List;
 
 @Builder
 @Data

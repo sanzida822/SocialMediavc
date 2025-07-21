@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.socialmediamvc.enums.Privacy;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -21,8 +22,11 @@ import java.util.List;
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String content;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "privacy", columnDefinition = "ENUM('PUBLIC', 'FRIENDS', 'ONLY_ME')")    private Privacy privacy;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="posted_by" , nullable = false)

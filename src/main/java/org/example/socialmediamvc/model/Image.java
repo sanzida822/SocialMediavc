@@ -20,7 +20,7 @@ import java.util.List;
 public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Lob
     @Column(nullable = false,columnDefinition = "LONGBLOB")

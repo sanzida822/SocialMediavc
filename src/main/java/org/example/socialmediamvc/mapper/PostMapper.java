@@ -21,6 +21,7 @@ public class PostMapper {
 
         return Post.builder().content(postRequestDto.getContent())
                 .postedBy(user)
+                .privacy(postRequestDto.getPrivacy())
                 .build();
 
     }
