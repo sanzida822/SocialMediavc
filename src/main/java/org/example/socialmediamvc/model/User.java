@@ -48,13 +48,15 @@ public class User {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
+    @Builder.Default
     @OneToMany(mappedBy = "sender" ,cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<FriendRequest> sentRequest=new HashSet<>();
+    private Set<FriendRequest> sentRequests=new HashSet<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "receiver", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<FriendRequest> receivedRequest=new HashSet<>();
 
-
+    @Builder.Default
     @OneToMany(mappedBy = "postedBy", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Post> posts = new ArrayList<>();
 

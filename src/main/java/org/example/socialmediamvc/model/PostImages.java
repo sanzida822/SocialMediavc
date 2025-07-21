@@ -14,7 +14,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class PostImages {
     @EmbeddedId
-    private PostImageId postImageId;
+    @Builder.Default
+    private PostImageId postImageId = new PostImageId();
 
     @ManyToOne(cascade = CascadeType.ALL)
     @MapsId("postId")

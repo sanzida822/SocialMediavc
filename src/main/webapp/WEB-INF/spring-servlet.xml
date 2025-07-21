@@ -52,8 +52,6 @@
         <property name="password" value="${db.password}"/>
     </bean>
 
-
-
     <!-- EntityManagerFactory -->
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
@@ -70,9 +68,6 @@
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.format_sql">true</prop>
-
-
-
             </props>
         </property>
     </bean>

@@ -1,6 +1,5 @@
 package org.example.socialmediamvc.mapper;
 
-import org.example.socialmediamvc.dto.ImageRequestDto;
 import org.example.socialmediamvc.model.Image;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;

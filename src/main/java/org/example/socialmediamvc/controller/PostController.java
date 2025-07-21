@@ -5,7 +5,6 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.example.socialmediamvc.dto.ImageRequestDto;
 import org.example.socialmediamvc.dto.PostRequestDto;
 import org.example.socialmediamvc.dto.UserDto;
 import org.example.socialmediamvc.service.PostService;
@@ -15,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -33,7 +33,7 @@ public class PostController {
     @PostMapping(value = "/create", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public String createPost(@Valid @ModelAttribute PostRequestDto postRequestDto, BindingResult bindingResult,
                              @RequestParam(value = "images", required = false) MultipartFile[] imageFiles,
-                             HttpServletRequest request, HttpSession session) {
+                             HttpServletRequest request, HttpSession session) throws IOException {
         UserDto loggedInUser=(UserDto)session.getAttribute("user");
         log.info("Received POST request for post: {}", request.getParameter("privacy"));
 
@@ -41,8 +41,9 @@ public class PostController {
             log.error("Validation errors in post creation: {}", bindingResult.getAllErrors());
             return "home";
         }
-        postService.save(postRequestDto,loggedInUser);
         log.info("Received POST request for post: {}", postRequestDto);
+        postService.save(postRequestDto,loggedInUser);
+
 
         return "home";
     }

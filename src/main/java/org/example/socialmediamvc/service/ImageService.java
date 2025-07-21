@@ -1,7 +1,6 @@
 package org.example.socialmediamvc.service;
 
 import lombok.RequiredArgsConstructor;
-import org.example.socialmediamvc.dto.ImageRequestDto;
 import org.example.socialmediamvc.mapper.ImageMapper;
 import org.example.socialmediamvc.model.Image;
 import org.example.socialmediamvc.repository.ImageRepository;

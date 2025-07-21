@@ -23,6 +23,7 @@ public class Constants {
         public static final String POST_CONTENT_LENGTH="Post content cannot exceed 5000 characters.";
         public static final String IMAGE_REQUIRED="Image is required.";
         public static final String INVALID_IMAGE_TYPE = "Only JPG or PNG images are allowed";
+        public static final String INVALID_IMAGE_SIZE = "Image exceeds 5MB size limit.";
 
     }
 

@@ -9,8 +9,8 @@ import java.lang.annotation.*;
 @Documented
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = AllowedImageTypeValidator.class)
-public @interface AllowedImageType {
+@Constraint(validatedBy = AllowedImageValidator.class)
+public @interface AllowedImage {
     String message() default Constants.ErrorMessage.INVALID_IMAGE_TYPE;
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};

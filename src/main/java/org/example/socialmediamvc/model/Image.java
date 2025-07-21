@@ -23,7 +23,7 @@ public class Image {
     private int id;
 
     @Lob
-    @Column(nullable = false)
+    @Column(nullable = false,columnDefinition = "LONGBLOB")
     private byte[] data;
 
     @Column(name="size")
