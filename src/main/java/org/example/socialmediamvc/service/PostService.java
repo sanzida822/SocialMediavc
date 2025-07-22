@@ -5,13 +5,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.example.socialmediamvc.dto.PostRequestDto;
 import org.example.socialmediamvc.dto.PostResponseDto;
 import org.example.socialmediamvc.dto.UserDto;
-import org.example.socialmediamvc.exception.UserNotFoundException;
 import org.example.socialmediamvc.mapper.ImageMapper;
 import org.example.socialmediamvc.mapper.PostMapper;
 import org.example.socialmediamvc.model.*;
 import org.example.socialmediamvc.repository.PostRepository;
 import org.example.socialmediamvc.repository.UserRepository;
-import org.example.socialmediamvc.utils.Constants;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -38,7 +36,6 @@ public class PostService {
             for (MultipartFile imageFile : postRequestDto.getImages()) {
                 if (!imageFile.isEmpty()) {
                     Image image = imageMapper.toEntity(imageFile);
-
                     PostImages postImages = PostImages.builder()
                             .post(post)
                             .image(image)
@@ -51,9 +48,9 @@ public class PostService {
         postRepository.save(post);
     }
 
-    public List<PostResponseDto> getVisiblePostsForCurrentUser(UserDto LoggeedInuser) {
-        User user = userService.user(LoggeedInuser.getId());
-        List<Post> posts = postRepository.findVisibleposts(user);
+    public List<PostResponseDto> getVisiblePostsForCurrentUser(UserDto LoggedInUser) {
+        User user = userService.user(LoggedInUser.getId());
+        List<Post> posts = postRepository.findVisiblePosts(user);
         return postMapper.toDtoList(posts);
     }
 }

@@ -19,7 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 @ContentOrImages
 
 public class PostRequestDto {
-    private int id;
+    private Integer id;
 
     @NotNull()
     private Privacy privacy;

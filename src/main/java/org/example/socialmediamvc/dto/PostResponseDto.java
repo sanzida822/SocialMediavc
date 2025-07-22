@@ -19,4 +19,5 @@ public class PostResponseDto {
     private UserDto user;
     private LocalDateTime createdAt;
     private List<ImageResponseDto> images;
+    private String privacy;
 }

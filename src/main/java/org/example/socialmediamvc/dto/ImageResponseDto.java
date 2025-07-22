@@ -14,9 +14,9 @@ import org.springframework.web.multipart.MultipartFile;
 @Builder
 
 public class ImageResponseDto {
-    private int id;
+    private Integer id;
     private String fileName;
     private String contentType;
-    private String base64Data;
+//    private String base64Data;
 
 }

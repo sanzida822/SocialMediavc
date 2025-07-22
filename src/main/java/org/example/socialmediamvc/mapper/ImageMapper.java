@@ -28,7 +28,6 @@ public class ImageMapper {
         String base64Image = Base64.getEncoder().encodeToString(image.getData());
         return ImageResponseDto.builder()
                 .id(image.getId())
-                .base64Data(base64Image)
                 .contentType(image.getContentType())
                 .fileName(image.getFilename())
                 .build();

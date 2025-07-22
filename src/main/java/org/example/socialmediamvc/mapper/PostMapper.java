@@ -24,7 +24,6 @@ import java.util.stream.Collectors;
 public class PostMapper {
     private final UserMapper userMapper;
     private final ImageMapper imageMapper;
-    private final ImageResponseDto imageResponseDto;
 
     public Post toEntity(PostRequestDto postRequestDto, User user) {
         return Post.builder().content(postRequestDto.getContent())
@@ -37,6 +36,7 @@ public class PostMapper {
         return PostResponseDto.builder().id(post.getId())
                 .content(post.getContent())
                 .createdAt(post.getCreatedAt())
+                .privacy(post.getPrivacy().name())
                 .user(userMapper.toDto(user))
                 .images(toDto(post.getPostImages()))
                 .build();
@@ -47,7 +47,6 @@ public class PostMapper {
                 .map(imageMapper::toDto)
                 .collect(Collectors.toList());
     }
-
 
     public List<PostResponseDto> toDtoList(List<Post> posts) {
         return posts.stream()
