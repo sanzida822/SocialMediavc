@@ -26,6 +26,7 @@ public class FriendshipService {
         friendshipRepository.acceptFriendRequest(requestId);
         friendRequestService.deleteById(requestId);
     }
+
     public void rejectFriendRequest(int requestId) {
         log.info("Rejecting friend request {}", requestId);
         FriendRequest friendRequest= friendRequestService.findById(requestId);

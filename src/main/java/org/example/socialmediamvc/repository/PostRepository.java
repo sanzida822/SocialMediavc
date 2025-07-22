@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-    @EntityGraph(attributePaths = {"postImages","postImages.images"})
+    @EntityGraph(attributePaths = {"postImages","postImages.image"})
     @Query("SELECT p FROM Post p WHERE " +
             "(p.privacy = 'PUBLIC') OR " +
             "(p.privacy = 'FRIENDS' AND EXISTS (" +
@@ -23,5 +23,5 @@ public interface PostRepository extends JpaRepository<Post, Long> {
             "  f.friendshipStatus = 'ACTIVE'" +
             ")) OR " +
             "(p.postedBy = :user)")
-    List<Post> findByUser(@Param("user") User user);
+    List<Post> findVisibleposts(@Param("user") User user);
 }

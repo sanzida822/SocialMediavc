@@ -27,9 +27,9 @@ public class UserService {
     private final UserMapper userMapper;
     private final UserRepository userRepository;
     private final ImageMapper imageMapper;
+
     public UserDto emailExists(String email) {
       return   userRepository.findByEmail(email).map(userMapper::toDto).orElse(null);
-
     }
 
     public void register(RegistrationRequestDto registrationRequestDto) throws IOException {
@@ -61,6 +61,10 @@ public class UserService {
     public UserDto getUserById(int userId) {
         User user= userRepository.findById(userId).orElseThrow(()-> new UserNotFoundException(Constants.ErrorMessage.USER_NOT_FOUND));
         return userMapper.toDto(user);
+    }
+
+    public User user(int userId) {
+        return userRepository.findById(userId).orElseThrow(()-> new UserNotFoundException(Constants.ErrorMessage.USER_NOT_FOUND));
     }
 
 }

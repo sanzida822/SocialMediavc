@@ -6,10 +6,12 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.socialmediamvc.dto.PostRequestDto;
+import org.example.socialmediamvc.dto.PostResponseDto;
 import org.example.socialmediamvc.dto.UserDto;
 import org.example.socialmediamvc.service.PostService;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -26,7 +28,11 @@ public class PostController {
     private  final PostService postService;
 
     @GetMapping("/")
-    public String home() {
+    public String home(HttpSession session, Model model) {
+        UserDto loggedInUser=(UserDto)session.getAttribute("user");
+        List<PostResponseDto> posts = postService.getVisiblePostsForCurrentUser(loggedInUser);
+        model.addAttribute("posts", posts);
+
         return "home";
     }
 
