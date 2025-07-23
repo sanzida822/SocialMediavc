@@ -13,7 +13,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface  PasswordMatches {
     String message() default Constants.ErrorMessage.PASSWORD_MISMATCH;
-
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

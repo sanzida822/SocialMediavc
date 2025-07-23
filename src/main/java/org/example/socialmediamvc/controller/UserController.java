@@ -1,6 +1,7 @@
 package org.example.socialmediamvc.controller;
 
 import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.socialmediamvc.dto.UserDto;
 import org.example.socialmediamvc.service.UserService;
@@ -17,9 +18,10 @@ import java.util.List;
 @RequestMapping("/users")
 @Controller
 @Slf4j
+@RequiredArgsConstructor
 public class UserController {
-    @Autowired
-    UserService userService;
+
+   private final UserService userService;
 
     @GetMapping("/suggestions")
     public String getSuggestedUsers(HttpSession session, Model model) {

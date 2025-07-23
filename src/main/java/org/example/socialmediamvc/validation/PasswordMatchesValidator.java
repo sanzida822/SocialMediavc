@@ -4,6 +4,7 @@ import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import org.example.socialmediamvc.dto.RegistrationRequestDto;
 import org.example.socialmediamvc.utils.CommonUtil;
+import org.example.socialmediamvc.utils.Constants;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,7 +17,7 @@ public class PasswordMatchesValidator implements ConstraintValidator<PasswordMat
         boolean isMatched= registrationRequestDto.getPassword().equals(registrationRequestDto.getConfirmPassword());
         if(!isMatched) {
             context.disableDefaultConstraintViolation();
-            context.buildConstraintViolationWithTemplate("Passwords do not match").addPropertyNode("confirmPassword").addConstraintViolation();
+            context.buildConstraintViolationWithTemplate(Constants.ErrorMessage.PASSWORD_MISMATCH).addPropertyNode("confirmPassword").addConstraintViolation();
         }
         return isMatched;
     }

@@ -7,7 +7,6 @@ public class PasswordUtil {
         return BCrypt.withDefaults().hashToString(12, password.toCharArray());
     }
 
-
     public static boolean verifyPassword(String plainPassword, String hashedPassword) {
         return BCrypt.verifyer().verify(plainPassword.toCharArray(), hashedPassword).verified;
     }

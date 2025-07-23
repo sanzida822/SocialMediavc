@@ -12,8 +12,8 @@ import org.example.socialmediamvc.validation.UniqueEmail;
 public class LoginRequestDto {
     @Email
     @NotBlank
-
     private String email;
+
     @NotBlank
     private String password;
 }

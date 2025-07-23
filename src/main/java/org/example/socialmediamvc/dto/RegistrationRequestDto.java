@@ -27,8 +27,6 @@ public class RegistrationRequestDto {
 
         @NotBlank(message = Constants.ErrorMessage.PASSWORD_REQUIRED)
         private String confirmPassword;
-       //  @ImageFile
-       //  private MultipartFile profileImage;
     }
 
 

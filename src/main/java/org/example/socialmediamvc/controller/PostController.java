@@ -57,7 +57,7 @@ public class PostController {
 
     @PostMapping("/delete")
     public String deletePost() {
-        return "delete";
+        return "redirect:/";
     }
 }
 

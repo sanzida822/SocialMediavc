@@ -1,23 +1,20 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
-       xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:jpa="http://www.springframework.org/schema/data/jpa"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="
-           http://www.springframework.org/schema/beans
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans.xsd
            http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context.xsd
            http://www.springframework.org/schema/mvc
            http://www.springframework.org/schema/mvc/spring-mvc.xsd
-           http://www.springframework.org/schema/tx
-           http://www.springframework.org/schema/tx/spring-tx.xsd
            http://www.springframework.org/schema/data/jpa
            http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+
+
     <!-- Scan for annotations -->
     <context:component-scan base-package="org.example.socialmediamvc"/>
-
 
     <!-- View resolver -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -30,6 +27,14 @@
         <property name="defaultEncoding" value="UTF-8"/>
     </bean>
 
+    <bean id="authInterceptor" class="org.example.socialmediamvc.interceptor.AuthInterceptor"/>
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <ref bean="authInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
     <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
         <property name="validationMessageSource" ref="messageSource"/>
     </bean>
@@ -37,7 +42,6 @@
     <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
 
     <mvc:annotation-driven validator="validator"/>
-
 
     <!--    load properties file-->
     <context:property-placeholder location="classpath:application.properties"/>
@@ -71,7 +75,6 @@
             </props>
         </property>
     </bean>
-
 
 
     <!-- Transaction Manager -->

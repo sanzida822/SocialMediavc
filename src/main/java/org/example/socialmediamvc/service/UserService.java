@@ -33,15 +33,13 @@ public class UserService {
     }
 
     public void register(RegistrationRequestDto registrationRequestDto) throws IOException {
-       // Image profileImage = imageMapper.toEntity(registrationRequestDto.getProfileImage());
-     //   User user=userMapper.toEntity(registrationRequestDto, profileImage);
         User user=userMapper.toEntity(registrationRequestDto);
         userRepository.save(user);
-
     }
 
     public UserDto verifyLogin(LoginRequestDto loginRequestDto) throws IOException {
         Optional <User> user = userRepository.findByEmail(loginRequestDto.getEmail());
+       // User user = userRepository.findByEmail(email).orElse(null);
         if(user.isEmpty()){
             return null;
         }
@@ -54,7 +52,7 @@ public class UserService {
     }
 
     public List<UserDto> getNonFriendUsers(int loggedInUserId) {
-       List<User> nonFriendUsers=userRepository.findNonFriendUsers(loggedInUserId);
+       //List<User> nonFriendUsers=userRepository.findNonFriendUsers(loggedInUserId);
        return userRepository.findNonFriendUsers(loggedInUserId).stream().map(userMapper::toDto).toList();
     }
 
